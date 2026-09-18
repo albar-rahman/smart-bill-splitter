@@ -187,5 +187,5 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 ---
 
 <p align="center">
-  Crafted with ❤ by <a href="https://github.com/albar-rahman"><strong>Albar Rahman</strong></a>
+  Crafted with ❤️ by <a href="https://github.com/albar-rahman"><strong>Albar Rahman A</strong></a>
 </p>
