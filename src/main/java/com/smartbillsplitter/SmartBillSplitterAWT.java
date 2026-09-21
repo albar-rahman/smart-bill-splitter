@@ -16,8 +16,6 @@ import java.util.Map;
  *
  * Project by:
  * - ALBAR RAHMAN A (2403811710621004)
- * - CAUVIRISELVAN K (2403811710621014)
- * - DINESHKAR M (2403811710621026)
  *
  * Department of Electronics and Communication Engineering
  * K. Ramakrishnan College of Technology (Autonomous)

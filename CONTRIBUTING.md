@@ -6,14 +6,14 @@ Thank you for your interest in contributing to **Smart Bill Splitter**!
 
 1. **Fork the Repository** on GitHub.
 2. **Clone your fork**:
-   ``bash
+   ```bash
    git clone https://github.com/albar-rahman/smart-bill-splitter.git
    cd smart-bill-splitter
-   ``
+   ```
 3. **Create a Feature Branch**:
-   ``bash
+   ```bash
    git checkout -b feature/awesome-improvement
-   ``
+   ```
 4. **Make Changes**:
    - Write clean, modular Java code conforming to OOP standards.
    - Use BigDecimal for monetary and precision calculations.

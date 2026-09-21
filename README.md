@@ -17,12 +17,10 @@
 ## 🎓 Academic Background
 
 This software was engineered as part of the **Java Programming (EGB1201)** curriculum:
+- **Author**: **Albar Rahman A**
+- **Register Number**: 2403811710621004
 - **Department**: Electronics and Communication Engineering
 - **Institution**: K. Ramakrishnan College of Technology (Autonomous), Samayapuram, Trichy
-- **Development Team**:
-  - **Albar Rahman A** (2403811710621004)
-  - **Cauviriselvan K** (2403811710621014)
-  - **Dineshkar M** (2403811710621026)
 
 ---
 
@@ -30,11 +28,11 @@ This software was engineered as part of the **Java Programming (EGB1201)** curri
 
 | Feature | Description |
 | :--- | :--- |
-| 🍕 **Item-Wise Splitting** | Granular expense allocation allowing each dish or expense item to be shared across any arbitrary subset of participants (e.g. Pizza,450,Alice\|Bob,Alice). |
-| 💰 **Financial-Grade Precision** | Eliminates floating-point rounding errors by utilizing Java's BigDecimal with RoundingMode.HALF_UP across all divisions and multiplications. |
+| 🍕 **Item-Wise Splitting** | Granular expense allocation allowing each dish or expense item to be shared across any arbitrary subset of participants (e.g. `Pizza,450,Alice|Bob,Alice`). |
+| 💰 **Financial-Grade Precision** | Eliminates floating-point rounding errors by utilizing Java's `BigDecimal` with `RoundingMode.HALF_UP` across all divisions and multiplications. |
 | 🧾 **Proportional Tax & Tip** | Automatically distributes sales tax and gratuity strictly in proportion to each person's individual subtotal consumption. |
-| ⚖ **Net Debt Settlement** | Automatically reconciles the difference between what each participant owes and what they paid up front, yielding a clean ledger of who receives or owes funds. |
-| 🖥 **Lightweight AWT GUI** | Fast, cross-platform graphical desktop interface with zero third-party UI dependencies. |
+| ⚖️ **Net Debt Settlement** | Automatically reconciles the difference between what each participant owes and what they paid up front, yielding a clean ledger of who receives or owes funds. |
+| 🖥️ **Lightweight AWT GUI** | Fast, cross-platform graphical desktop interface with zero third-party UI dependencies. |
 | 🧪 **Automated Unit Testing** | Includes automated JUnit 5 test suites validating rounding stability, multiple payers, and settlement arithmetic. |
 
 ---
@@ -44,20 +42,30 @@ This software was engineered as part of the **Java Programming (EGB1201)** curri
 The system guarantees fair cost distribution using the following equations:
 
 1. **Individual Item Share**:
-   For any item \( i \) with price \( P_i \) shared equally among a set of sharers \( S_i \):
+   For any item $i$ with price $P_i$ shared equally among a set of sharers $S_i$:
+   $$
    \text{Share}_{i} = \frac{P_i}{|S_i|}
+   $$
 
 2. **Personal Subtotal**:
-   For participant \( u \), their subtotal is the sum of shares for items they participated in:
+   For participant $u$, their subtotal is the sum of shares for items they participated in:
+   $$
    \text{Subtotal}_u = \sum_{i \in \text{Items}_u} \text{Share}_{i}
+   $$
 
 3. **Proportional Tax & Tip**:
-   Given tax rate \( T \) and tip rate \( G \) as percentages:
+   Given tax rate $T$ and tip rate $G$ as percentages:
+   $$
    \text{Tax}_u = \text{Subtotal}_u \times \frac{T}{100}, \quad \text{Tip}_u = \text{Subtotal}_u \times \frac{G}{100}
+   $$
 
 4. **Total Liability & Net Balance**:
+   $$
    \text{Total}_u = \text{Subtotal}_u + \text{Tax}_u + \text{Tip}_u
+   $$
+   $$
    \text{Net Balance}_u = \text{Total}_u - \text{Paid}_u
+   $$
    *(Negative Net Balance indicates the participant is **owed** a reimbursement; Positive indicates the participant **must pay**).*
 
 ---
@@ -66,7 +74,7 @@ The system guarantees fair cost distribution using the following equations:
 
 The interactive AWT interface allows intuitive data entry and produces instant tabular summaries:
 
-``
+```text
 +---------------------------------------------------------------------------------+
 | Smart Bill Splitter (AWT)                                            [_][X]     |
 +---------------------------------------------------------------------------------+
@@ -86,44 +94,43 @@ The interactive AWT interface allows intuitive data entry and produces instant t
 +---------------------------------------------------------------------------------+
 |                             [ Calculate ]   [ Clear ]                           |
 +---------------------------------------------------------------------------------+
-``
+```
 
 ---
 
 ## 📁 Project Structure
 
-``
+```text
 smart-bill-splitter/
-â”‚
-â”œâ”€â”€ pom.xml                                      # Maven build descriptor
-â”œâ”€â”€ build.bat                                    # Windows compilation script
-â”œâ”€â”€ run.bat                                      # Windows application launcher
-â”œâ”€â”€ .gitignore                                   # Standard Java & IDE ignore rules
-â”œâ”€â”€ LICENSE                                      # MIT Open Source License
-â”œâ”€â”€ CODE_OF_CONDUCT.md                           # Contributor Covenant Code of Conduct
-â”œâ”€â”€ CONTRIBUTING.md                              # Open source contribution guidelines
-â”œâ”€â”€ README.md                                    # Comprehensive project documentation
-â”œâ”€â”€ SECURITY.md                                  # Vulnerability reporting policy
-â”‚
-â””â”€â”€ src/
-    â”œâ”€â”€ main/
-    â”‚   â””â”€â”€ java/
-    â”‚       â””â”€â”€ com/
-    â”‚           â””â”€â”€ smartbillsplitter/
-    â”‚               â”œâ”€â”€ Main.java                # Universal entry point
-    â”‚               â”œâ”€â”€ SmartBillSplitterAWT.java # AWT Graphical User Interface
-    â”‚               â”œâ”€â”€ model/
-    â”‚               â”‚   â”œâ”€â”€ Item.java            # Expense item domain entity
-    â”‚               â”‚   â””â”€â”€ PersonResult.java    # Calculation result breakdown
-    â”‚               â””â”€â”€ service/
-    â”‚                   â””â”€â”€ BillSplitterService.java # High-precision calculation engine
-    â”‚
-    â””â”€â”€ test/
-        â””â”€â”€ java/
-            â””â”€â”€ com/
-                â””â”€â”€ smartbillsplitter/
-                    â””â”€â”€ BillSplitterServiceTest.java # JUnit 5 test suite
-``
+├── pom.xml                                      # Maven build descriptor
+├── build.bat                                    # Windows compilation script
+├── run.bat                                      # Windows application launcher
+├── .gitignore                                   # Standard Java & IDE ignore rules
+├── LICENSE                                      # MIT Open Source License (Albar Rahman A)
+├── CODE_OF_CONDUCT.md                           # Contributor Covenant Code of Conduct
+├── CONTRIBUTING.md                              # Open source contribution guidelines
+├── README.md                                    # Comprehensive project documentation
+├── SECURITY.md                                  # Vulnerability reporting policy
+│
+└── src/
+    ├── main/
+    │   └── java/
+    │       └── com/
+    │           └── smartbillsplitter/
+    │               ├── Main.java                # Universal entry point
+    │               ├── SmartBillSplitterAWT.java # AWT Graphical User Interface
+    │               ├── model/
+    │               │   ├── Item.java            # Expense item domain entity
+    │               │   └── PersonResult.java    # Calculation result breakdown
+    │               └── service/
+    │                   └── BillSplitterService.java # High-precision calculation engine
+    │
+    └── test/
+        └── java/
+            └── com/
+                └── smartbillsplitter/
+                    └── BillSplitterServiceTest.java # JUnit 5 test suite
+```
 
 ---
 
@@ -136,31 +143,31 @@ smart-bill-splitter/
 ### Building the Project
 
 #### Option A: Using Maven
-``bash
+```bash
 # Compile and run test suite
 mvn clean test
 
 # Package into executable JAR
 mvn package
-``
+```
 
 #### Option B: Using Windows Scripts
-``cmd
+```cmd
 # Compile source files into 'bin/'
 build.bat
 
 # Launch the AWT Graphical Interface
 run.bat
-``
+```
 
 #### Option C: Direct Java Command
-``bash
+```bash
 # Compile
 javac -encoding UTF-8 -d bin src/main/java/com/smartbillsplitter/model/*.java src/main/java/com/smartbillsplitter/service/*.java src/main/java/com/smartbillsplitter/*.java
 
 # Run
 java -cp bin com.smartbillsplitter.SmartBillSplitterAWT
-``
+```
 
 ---
 
@@ -168,9 +175,9 @@ java -cp bin com.smartbillsplitter.SmartBillSplitterAWT
 
 Execute the automated JUnit test suite via Maven:
 
-``bash
+```bash
 mvn test
-``
+```
 
 ---
 
