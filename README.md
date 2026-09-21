@@ -39,34 +39,50 @@ This software was engineered as part of the **Java Programming (EGB1201)** curri
 
 ## 📊 Mathematical Formulation
 
-The system guarantees fair cost distribution using the following equations:
+The system guarantees fair and financially accurate cost distribution using the following formulation:
 
-1. **Individual Item Share**:
-   For any item $i$ with price $P_i$ shared equally among a set of sharers $S_i$:
-   $$
-   \text{Share}_{i} = \frac{P_i}{|S_i|}
-   $$
+### 1. Individual Item Share
+For any line item $i$ with price $P_i$ shared equally among a set of participants $S_i$:
 
-2. **Personal Subtotal**:
-   For participant $u$, their subtotal is the sum of shares for items they participated in:
-   $$
-   \text{Subtotal}_u = \sum_{i \in \text{Items}_u} \text{Share}_{i}
-   $$
+$$
+\text{Share}_i = \frac{P_i}{|S_i|}
+$$
 
-3. **Proportional Tax & Tip**:
-   Given tax rate $T$ and tip rate $G$ as percentages:
-   $$
-   \text{Tax}_u = \text{Subtotal}_u \times \frac{T}{100}, \quad \text{Tip}_u = \text{Subtotal}_u \times \frac{G}{100}
-   $$
+### 2. Personal Subtotal
+For participant $u$, their subtotal is the sum of their individual shares across all items they consumed ($\text{Items}_u$):
 
-4. **Total Liability & Net Balance**:
-   $$
-   \text{Total}_u = \text{Subtotal}_u + \text{Tax}_u + \text{Tip}_u
-   $$
-   $$
-   \text{Net Balance}_u = \text{Total}_u - \text{Paid}_u
-   $$
-   *(Negative Net Balance indicates the participant is **owed** a reimbursement; Positive indicates the participant **must pay**).*
+$$
+\text{Subtotal}_u = \sum_{i \in \text{Items}_u} \text{Share}_i
+$$
+
+### 3. Proportional Tax & Tip Allocation
+Given a sales tax percentage $T$ and tip gratuity percentage $G$, tax and tip are allocated strictly in proportion to each participant's individual subtotal consumption:
+
+$$
+\text{Tax}_u = \text{Subtotal}_u \times \left(\frac{T}{100}\right)
+$$
+
+$$
+\text{Tip}_u = \text{Subtotal}_u \times \left(\frac{G}{100}\right)
+$$
+
+### 4. Total Personal Liability
+The total financial obligation for participant $u$ is the sum of their subtotal, allocated tax, and allocated tip:
+
+$$
+\text{Total}_u = \text{Subtotal}_u + \text{Tax}_u + \text{Tip}_u
+$$
+
+### 5. Net Debt Settlement & Balance
+The net settlement balance for participant $u$ reconciles their total liability against the amount they paid upfront ($\text{Paid}_u$):
+
+$$
+\text{Net Balance}_u = \text{Total}_u - \text{Paid}_u
+$$
+
+- **Negative Net Balance** ($\text{Net}_u < 0$): Participant paid more than their share and is **owed a reimbursement**.
+- **Positive Net Balance** ($\text{Net}_u > 0$): Participant paid less than their share and **must pay** the remaining amount.
+- **Zero Net Balance** ($\text{Net}_u = 0$): Account is fully settled.
 
 ---
 
